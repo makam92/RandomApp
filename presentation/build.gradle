@@ -19,7 +19,6 @@ dependencies {
     implementation presentationDependencies.rxKotlin
     implementation presentationDependencies.javaxAnnotation
     implementation presentationDependencies.javaxInject
-    implementation presentationDependencies.timber
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
