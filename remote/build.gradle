@@ -1,0 +1,26 @@
+apply plugin: 'kotlin'
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
+
+configurations.all {
+    resolutionStrategy {
+        force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    }
+}
+
+dependencies {
+    def remoteDependencies = rootProject.ext.remote
+
+    implementation project(path: ':data')
+
+    implementation remoteDependencies.rxKotlin
+    implementation remoteDependencies.okHttp
+    implementation remoteDependencies.okHttpLogging
+    implementation remoteDependencies.retrofit
+    implementation remoteDependencies.gson
+    implementation remoteDependencies.retrofitAdapter
+    implementation remoteDependencies.javaxAnnotation
+    implementation remoteDependencies.javaxInject
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}

@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
+
+
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.makam.randomapp"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+            debug {
+                testCoverageEnabled true
+            }
+
+    }
+}
+
+kapt {
+    correctErrorTypes = true
+    generateStubs = true
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    }
+}
+dependencies {
+    def uiDependencies = rootProject.ext.uiDependencies
+    implementation project(path: ':presentation')
+    implementation project(path: ':data')
+    implementation project(path: ':remote')
+    implementation project(path: ':domain')
+    androidTestImplementation uiDependencies.junit
+    androidTestImplementation uiDependencies.testRunner
+    androidTestImplementation uiDependencies.espresso
+    implementation uiDependencies.appCompat
+    implementation uiDependencies.constraintLayout
+    implementation uiDependencies.androidAnnotations
+    implementation uiDependencies.androidSupportV4
+    implementation uiDependencies.androidSupportV13
+    implementation uiDependencies.appCompatV7
+    implementation uiDependencies.supportDesign
+    implementation uiDependencies.dagger
+    implementation uiDependencies.daggerSupport
+    implementation uiDependencies.timber
+    implementation uiDependencies.rxAndroid
+    implementation uiDependencies.rxKotlin
+    implementation uiDependencies.androidAnnotations
+    implementation uiDependencies.javaxAnnotation
+    implementation uiDependencies.javaxInject
+    implementation uiDependencies.glide
+    kapt uiDependencies.glideCompiler
+    kapt uiDependencies.daggerCompiler
+    kapt uiDependencies.daggerProcessor
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+}
