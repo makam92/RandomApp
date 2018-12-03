@@ -7,10 +7,6 @@ import javax.inject.Inject
 
 open class ImgurEntityMapper @Inject constructor(): EntityMapper<ImgurModel, ImgurEntity> {
 
-
-    /**
-     * Map an instance of a [BufferooModel] to a [BufferooEntity] model
-     */
     override fun mapFromRemote(type: ImgurModel): ImgurEntity {
 
             return ImgurEntity(type.link, type.title, type.ups, type.comments,
